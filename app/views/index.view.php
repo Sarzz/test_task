@@ -1,5 +1,4 @@
 <?php require 'partials/head.php' ?>
-
 <div class="buttton_style" id="new_task"> Добавить задачу</div>
 <div class="form_top" style="display: none;">
     <form action="/new-task" method="post" class="decor">
@@ -91,3 +90,19 @@
     <?php } ?>
     </tbody>
 </table>
+<?php if($insert){ ?>
+<div class="column small-12">
+    <div class="form-success-message active">
+        <div class="form-success-message__wrap">
+            <div class="form-success-message__close">
+                <img src="public/img/close-sm.svg" alt="close">
+            </div>
+            <div class="form-success-message__icon">
+                <img src="public/img/check-circle-orange.svg" alt="check">
+            </div>
+            <div class="form-success-message__title">Спасибо!</div>
+            <div class="form-success-message__subtitle">Ваше задача успешно добавлена.</div>
+        </div>
+    </div>
+</div>
+<?php } ?>

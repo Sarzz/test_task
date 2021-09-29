@@ -84,11 +84,16 @@ class PagesController
             }
         }
         $starting_limit = ($page-1)*$limit;
+        $insert = false;
+        if(isset($_SESSION["sucess"])){
+            $insert = true;
+        }
+        unset($_SESSION['sucess']);
 
         $param = [":start"=>$starting_limit, ":limits"=>$limit];
 
         $tasks = Todo::getTasks($starting_limit, $limit, $by, $type);
-        return view('index', compact('tasks','totalPages', 'page_link', 'page', 'nm', 'em', 'ds', 'st'));
+        return view('index', compact('tasks','totalPages', 'page_link', 'page', 'nm', 'em', 'ds', 'st', 'insert'));
     }
 
     public function task(){
@@ -133,7 +138,10 @@ class PagesController
         $mail = $_POST["email"];
         $text = $_POST["text"];
 
-        $name = Todo::addTask($name, $mail, $text);
+        $new_insert = Todo::addTask($name, $mail, $text);
+        if(is_numeric($new_insert)){
+            $_SESSION["sucess"] = "success";
+        }
 
         return redirect('');
     }

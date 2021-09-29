@@ -23,4 +23,9 @@ $(function(){
 			});
 		});
 	}
+	if ($(".form-success-message").length) {
+		jQuery(".form-success-message__close").click(function() {
+			$(this).closest(".form-success-message").removeClass("active");
+		});
+	}
 });

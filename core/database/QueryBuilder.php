@@ -64,6 +64,7 @@ class QueryBuilder
             $sql = "INSERT INTO {$table} (name, email, description) VALUES (:name, :email, :description)";
             $statement = $this->pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
             $statement->execute($params);
+            return $this->pdo->lastInsertId();
         } catch (PDOException $e) {
             die('Whoops, Something went wrong');
         }
